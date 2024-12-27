@@ -11,7 +11,7 @@ const { t } = useI18n({
     {{ t('page.title') }}
   </UiPageTitle>
 
-  <div class="grid cols-[repeat(auto-fill,_minmax(300px,_1fr))] mt-10 gap-3">
+  <div v-if="data?.length" class="grid cols-[repeat(auto-fill,_minmax(300px,_1fr))] mt-10 gap-3">
     <RepositoryCard v-for="repository in data" :key="repository.id" :repository />
   </div>
 </template>
