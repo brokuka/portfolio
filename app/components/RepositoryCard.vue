@@ -13,15 +13,15 @@ const { name, description, url, stars, lastUpdate, starsLink, github } = reposit
 <template>
   <UiCard>
     <div class="flex items-center justify-between px-6 pt-2">
-      <!-- <Tooltip :text="t('tooltip.lastUpdate')">
+      <Tooltip :text="t('tooltip.lastUpdate')">
         <div class="flex cursor-default items-center gap-2">
           <Icon name="mdi:calendar-refresh" size="20" />
 
           <NuxtTime :datetime="lastUpdate" />
         </div>
-      </Tooltip> -->
+      </Tooltip>
 
-      <!-- <div class="flex items-center">
+      <div class="flex items-center">
         <Tooltip :text="t('tooltip.gitHubStars')">
           <UiButton class="w-fit gap-0.5 px-2" variant="ghost" as-child>
             <NuxtLink :to="starsLink" target="_blank">
@@ -39,7 +39,7 @@ const { name, description, url, stars, lastUpdate, starsLink, github } = reposit
             </NuxtLink>
           </UiButton>
         </Tooltip>
-      </div> -->
+      </div>
     </div>
 
     <UiCardHeader class="pt-4">

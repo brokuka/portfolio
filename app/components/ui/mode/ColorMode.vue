@@ -18,11 +18,11 @@ function toggleDark() {
 </script>
 
 <template>
-  <!-- <Tooltip :text="tooltipText" visible-on-click> -->
-  <UiButton size="icon" :variant :aria-label="tooltipText" @click="toggleDark">
-    <span class="i-mdi:weather-sunny dark:i-mdi:weather-night text-xl" />
-  </UiButton>
-  <!-- </Tooltip> -->
+  <Tooltip :text="tooltipText" visible-on-click>
+    <UiButton size="icon" :variant :aria-label="tooltipText" @click="toggleDark">
+      <span class="i-mdi:weather-sunny dark:i-mdi:weather-night text-xl" />
+    </UiButton>
+  </Tooltip>
 </template>
 
 <i18n lang="json">
