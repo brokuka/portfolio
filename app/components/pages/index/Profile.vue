@@ -43,7 +43,7 @@ const SOCIALS = computed(() => ([
         </template>
       </UiPageTitle>
 
-      <div class="flex gap-2">
+      <!-- <div class="flex gap-2">
         <Tooltip v-for="social in SOCIALS" :key="social.hint" :text="social.hint">
           <UiButton variant="ghost" size="icon" as-child :aria-label="social.hint">
             <NuxtLink :to="social.href" target="_blank">
@@ -51,7 +51,7 @@ const SOCIALS = computed(() => ([
             </NuxtLink>
           </UiButton>
         </Tooltip>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
