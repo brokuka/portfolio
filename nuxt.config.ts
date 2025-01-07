@@ -1,7 +1,3 @@
-import fs from 'node:fs'
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import path from 'node:path'
-
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
@@ -10,7 +6,7 @@ export default defineNuxtConfig({
   components: {
     dirs: [
       {
-        path: '~/components/pages',
+        path: '~/components/page',
         pathPrefix: true,
       },
       '~/components',
@@ -46,7 +42,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@unocss/nuxt',
     'template-copyright',
-    '@nuxt/icon',
     'nuxt-time',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
@@ -56,10 +51,6 @@ export default defineNuxtConfig({
     config: {
       standalone: false,
     },
-  },
-
-  icon: {
-    collections: ['mdi'],
   },
 
   compatibilityDate: '2024-12-09',
