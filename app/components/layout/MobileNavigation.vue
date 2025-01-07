@@ -38,7 +38,7 @@ function closeSheet(disabled?: boolean) {
                 @click="closeSheet(config.disabled)"
               >
                 <Component :is="config.componentType" :class="config.classes" v-bind="config.componentProps">
-                  <Icon v-if="config.disabled" name="mdi:lock" />
+                  <span v-if="config.disabled" class="i-mdi:lock" />
 
                   {{ config.name }}
                 </Component>

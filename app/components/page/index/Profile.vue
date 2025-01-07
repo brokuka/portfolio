@@ -8,18 +8,17 @@ const ANIMATE_WORDS = computed(() => ([t('animateWords.word_1'), t('animateWords
 const SOCIALS = computed(() => ([
   {
     hint: 'GitHub',
-    icon: 'mdi:github',
+    classes: 'i-mdi:github',
     href: 'https://github.com/brokuka',
   },
   {
     hint: 'Telegram',
-    classes: 'text-[#24A1DE]',
-    icon: 'mdi:telegram',
+    classes: cn('text-[#24A1DE] i-mdi:telegram'),
     href: 'https://t.me/brokuka',
   },
   {
     hint: t('socials.mail'),
-    icon: 'mdi:email',
+    classes: 'i-mdi:email',
     href: 'mailto:erik.manukyan2010@yandex.ru',
   },
 ]))
@@ -44,13 +43,13 @@ const SOCIALS = computed(() => ([
       </UiPageTitle>
 
       <div class="flex gap-2">
-        <Tooltip v-for="social in SOCIALS" :key="social.hint" :text="social.hint">
+        <SharedTooltip v-for="social in SOCIALS" :key="social.hint" :text="social.hint">
           <UiButton variant="ghost" size="icon" as-child :aria-label="social.hint">
             <NuxtLink :to="social.href" target="_blank">
-              <Icon :class="social.classes" :name="social.icon" size="20" />
+              <span :class="cn(social.classes, 'text-[20px]')" size="20" />
             </NuxtLink>
           </UiButton>
-        </Tooltip>
+        </SharedTooltip>
       </div>
     </div>
   </div>

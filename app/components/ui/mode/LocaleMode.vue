@@ -20,11 +20,11 @@ function toggleLanguage() {
 </script>
 
 <template>
-  <Tooltip :text="tooltipText" visible-on-click>
+  <SharedTooltip :text="tooltipText" visible-on-click>
     <UiButton size="icon" :variant :aria-label="tooltipText" @click="toggleLanguage">
       {{ locale.toUpperCase() }}
     </UiButton>
-  </Tooltip>
+  </SharedTooltip>
 </template>
 
 <i18n lang="json">

@@ -13,32 +13,32 @@ const { name, description, url, stars, lastUpdate, starsLink, github } = reposit
 <template>
   <UiCard>
     <div class="flex items-center justify-between px-6 pt-2">
-      <Tooltip :text="t('tooltip.lastUpdate')">
+      <SharedTooltip :text="t('tooltip.lastUpdate')">
         <div class="flex cursor-default items-center gap-2">
-          <Icon name="mdi:calendar-refresh" size="20" />
+          <span class="i-mdi:calendar-refresh text-[20px]" />
 
           <NuxtTime :datetime="lastUpdate" />
         </div>
-      </Tooltip>
+      </SharedTooltip>
 
       <div class="flex items-center">
-        <Tooltip :text="t('tooltip.gitHubStars')">
+        <SharedTooltip :text="t('tooltip.gitHubStars')">
           <UiButton class="w-fit gap-0.5 px-2" variant="ghost" as-child>
             <NuxtLink :to="starsLink" target="_blank">
               {{ formatNumber(stars) }}
 
-              <Icon name="mdi:star" size="18" class="shrink-0 text-yellow" />
+              <span class="i-mdi:star shrink-0 text-[18px] text-yellow" />
             </NuxtLink>
           </UiButton>
-        </Tooltip>
+        </SharedTooltip>
 
-        <Tooltip :text="t('tooltip.gitHubRepository')">
+        <SharedTooltip :text="t('tooltip.gitHubRepository')">
           <UiButton variant="ghost" size="icon" as-child>
             <NuxtLink :to="github" target="_blank">
-              <Icon name="mdi:github" size="24" />
+              <span class="i-mdi:github text-[24px]" size="24" />
             </NuxtLink>
           </UiButton>
-        </Tooltip>
+        </SharedTooltip>
       </div>
     </div>
 

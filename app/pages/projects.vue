@@ -12,7 +12,7 @@ const { t } = useI18n({
   </UiPageTitle>
 
   <div v-if="data?.length" class="grid cols-[repeat(auto-fill,_minmax(300px,_1fr))] mt-10 gap-3">
-    <RepositoryCard v-for="repository in data" :key="repository.id" :repository />
+    <ProjectsRepositoryCard v-for="repository in data" :key="repository.id" :repository />
   </div>
 </template>
 

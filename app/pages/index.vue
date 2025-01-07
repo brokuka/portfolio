@@ -52,7 +52,7 @@ const EXPERIENCES = computed(() => [
 <template>
   <IndexProfile />
 
-  <Section href="skills" :title="t('skills.title')">
+  <SharedSection href="skills" :title="t('skills.title')">
     <ul>
       <li v-for="skill in SKILLS" :key="skill.title" class="not-last:mb-3">
         <span class="mb-2 block">&#8226; {{ skill.title }}</span>
@@ -64,21 +64,21 @@ const EXPERIENCES = computed(() => [
         </ul>
       </li>
     </ul>
-  </Section>
+  </SharedSection>
 
-  <Section href="seniority" :title="t('seniority.title')">
+  <SharedSection href="seniority" :title="t('seniority.title')">
     {{ t('seniority.text') }}
-  </Section>
+  </SharedSection>
 
-  <Section href="about" :title="t('about.title')">
+  <SharedSection href="about" :title="t('about.title')">
     <p v-for="text in ABOUT" :key="text" class="text-base/6 not-last:mb-3">
       {{ text }}
     </p>
-  </Section>
+  </SharedSection>
 
-  <Section href="experience" :title="t('experience.title')">
-    <Timeline v-for="experience in EXPERIENCES" :key="experience.company" class="pb-2 not-last:mb-3 not-last-border-b" v-bind="experience" />
-  </Section>
+  <SharedSection href="experience" :title="t('experience.title')">
+    <IndexTimeline v-for="experience in EXPERIENCES" :key="experience.company" class="pb-2 not-last:mb-3 not-last-border-b" v-bind="experience" />
+  </SharedSection>
 </template>
 
 <i18n lang="json">
