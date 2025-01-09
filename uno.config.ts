@@ -14,7 +14,6 @@ export default defineConfig({
       fonts: {
         serif: 'Inter:400,500,700',
       },
-
     }),
   ],
   content: {
