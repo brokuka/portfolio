@@ -8,4 +8,5 @@ export interface TransformedRepository {
   url: string
   description: string
   lastUpdate: string
+  readme?: string
 }
