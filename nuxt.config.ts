@@ -1,6 +1,31 @@
+import { content, i18n } from './app/config/index'
+
 export default defineNuxtConfig({
+  devtools: { enabled: true },
+
+  watch: [
+    '~/config',
+  ],
+
+  app: {
+    head: {
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
+    },
+  },
+
   future: {
     compatibilityVersion: 4,
+  },
+
+  experimental: {
+    typedPages: true,
+  },
+
+  features: {
+    inlineStyles: false,
   },
 
   components: {
@@ -13,30 +38,9 @@ export default defineNuxtConfig({
     ],
   },
 
-  app: {
-    head: {
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-      ],
-    },
-  },
-
-  router: {
-    options: {
-      scrollBehaviorType: 'smooth',
-    },
-  },
-
-  devtools: { enabled: true },
-
   css: [
     '@unocss/reset/tailwind.css',
   ],
-
-  features: {
-    inlineStyles: false,
-  },
 
   modules: [
     '@nuxt/eslint',
@@ -45,6 +49,7 @@ export default defineNuxtConfig({
     'nuxt-time',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
+    '@nuxt/content',
   ],
 
   eslint: {
@@ -59,10 +64,6 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
-  i18n: {
-    locales: ['en', 'ru'],
-    vueI18n: './i18n.config.ts',
-    strategy: 'no_prefix',
-    defaultLocale: 'en',
-  },
+  i18n,
+  content,
 })
