@@ -7,7 +7,15 @@ const { t } = useI18n({
   useScope: 'local',
 })
 
-const { name, description, url, stars, lastUpdate, starsLink, github } = repository
+const { name, description, url, stars, lastUpdate, starsLink, github, id, readme } = repository
+
+const Link = resolveComponent('NuxtLink')
+
+const cardNavigateUrl = computed(() => `/projects/${name}`)
+const cardHeaderNavigation = {
+  type: readme ? Link : 'span',
+  props: readme ? { to: cardNavigateUrl } : {},
+}
 </script>
 
 <template>
@@ -44,9 +52,9 @@ const { name, description, url, stars, lastUpdate, starsLink, github } = reposit
 
     <UiCardHeader class="pt-4">
       <UiCardTitle>
-        <NuxtLink :to="github" target="_blank">
+        <Component :is="cardHeaderNavigation.type" v-bind="cardHeaderNavigation.props">
           {{ name }}
-        </NuxtLink>
+        </Component>
       </UiCardTitle>
 
       <UiCardDescription>{{ description }}</UiCardDescription>

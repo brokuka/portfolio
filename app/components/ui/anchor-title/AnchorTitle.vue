@@ -9,7 +9,6 @@ const Link = resolveComponent('NuxtLink')
 const titleConfig = {
   componentType: href ? Link : 'h3',
   isLink: Boolean(href),
-  to: href ? `#${href}` : {},
   componentProps: href ? { to: `#${href}` } : {},
 }
 </script>

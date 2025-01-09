@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   subtitle?: string
+  reverse?: boolean
 }>()
 
 const slot = defineSlots<{
@@ -10,8 +11,12 @@ const slot = defineSlots<{
 </script>
 
 <template>
-  <div>
-    <h3 v-if="subtitle" class="mb-2 flex text-xs text-primary/95 font-medium lg:text-sm">
+  <div
+    class="flex flex-col gap-2" :class="{
+      'flex-col-reverse': reverse,
+    }"
+  >
+    <h3 v-if="subtitle" class="flex text-xs text-primary/95 font-medium lg:text-sm">
       {{ subtitle }}
     </h3>
 
