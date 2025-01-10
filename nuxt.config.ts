@@ -3,10 +3,6 @@ import { content, i18n } from './app/config/index'
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  watch: [
-    '~/config',
-  ],
-
   app: {
     head: {
       meta: [
@@ -41,6 +37,12 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
   ],
+
+  routeRules: {
+    '/projects/**': {
+      prerender: true,
+    },
+  },
 
   modules: [
     '@nuxt/eslint',
