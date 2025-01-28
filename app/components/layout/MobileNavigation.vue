@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useEventListener, useWindowScroll } from '@vueuse/core'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
 const { navigationConfig } = useNavigation()
 const { y, directions } = useWindowScroll({ behavior: 'smooth' })
+const isLocaleChanged = ref(false)
 
 const isDrawerOpen = ref(false)
 const isNavigationHide = ref(false)
@@ -26,7 +28,7 @@ function navigationVisibility() {
   }
 
   lastY.value = y.value
-  isNavigationHide.value = directions.bottom
+  isNavigationHide.value = !isLocaleChanged.value ? directions.bottom : false
 }
 
 const handlers = {
@@ -36,6 +38,14 @@ const handlers = {
 
 Object.entries(handlers).forEach(([event, handler]) => {
   useEventListener(window, event, handler)
+})
+
+watch(locale, (newLocale) => {
+  if (newLocale) {
+    isLocaleChanged.value = true
+
+    setInterval(() => isLocaleChanged.value = false, 100)
+  }
 })
 </script>
 
