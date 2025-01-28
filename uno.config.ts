@@ -1,3 +1,5 @@
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
+import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { defineConfig, presetIcons, presetUno, presetWebFonts, transformerDirectives, transformerVariantGroup } from 'unocss'
 import presetAnimations from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
@@ -9,11 +11,24 @@ export default defineConfig({
     presetShadcn({
       color: 'blue',
     }),
-    presetIcons(),
+    presetIcons({
+      customizations: {
+        iconCustomizer(collection, icon, props) {
+          props.width = '20px'
+          props.height = '20px'
+        },
+      },
+      collections: {
+        custom: FileSystemIconLoader(
+          './public/assets/icons',
+        ),
+      },
+    }),
     presetWebFonts({
       fonts: {
         serif: 'Inter:400,500,700',
       },
+      processors: createLocalFontProcessor(),
     }),
   ],
   content: {
