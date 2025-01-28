@@ -17,7 +17,8 @@
     "lucide-vue-next": "latest",
     "markdown-it": "^14.1.0",
     "radix-vue": "latest",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "vaul-vue": "^0.2.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.2",
