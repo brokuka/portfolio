@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { ButtonVariants } from '../button'
+import { modeConfig } from '.'
 
-const { buttonVariant: variant = 'outline' } = defineProps<{
+const { buttonVariant: variant = 'outline', withText } = defineProps<{
   buttonVariant?: ButtonVariants['variant']
+  withText?: boolean
 }>()
 
 const { t, locale, setLocale } = useI18n({
@@ -17,12 +19,16 @@ function toggleLanguage() {
 
   setLocale(reverseLocale)
 }
+
+const { classes, componentProps } = modeConfig(withText)
 </script>
 
 <template>
   <SharedTooltip :text="tooltipText" visible-on-click>
-    <UiButton size="icon" :variant :aria-label="tooltipText" @click="toggleLanguage">
-      {{ locale.toUpperCase() }}
+    <UiButton v-bind="componentProps" :variant :aria-label="tooltipText" :class="classes" @click="toggleLanguage">
+      <span>{{ locale.toUpperCase() }}</span>
+
+      <span v-if="withText" class="text-xs font-medium">{{ t('text') }}</span>
     </UiButton>
   </SharedTooltip>
 </template>
@@ -30,9 +36,11 @@ function toggleLanguage() {
 <i18n lang="json">
 {
 	"en": {
+		"text": "Language",
 		"tooltipText": "Change to Russian language"
 	},
 	"ru": {
+		"text": "Язык",
 		"tooltipText": "Поменять на Английский язык"
 	}
 }
