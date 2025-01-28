@@ -27,7 +27,7 @@ const SOCIALS = computed(() => ([
 <template>
   <div class="mb-10 flex items-center justify-center gap-3 lg:mb-15 lg:justify-initial">
     <UiPlaceholder class="h-30 w-30 shrink-0 rounded-full lg:h-70 lg:w-70">
-      <div class="i-mdi:sunglasses text-6xl md:text-9xl" />
+      <div class="i-mdi:sunglasses size-15 lg:size-30" />
     </UiPlaceholder>
 
     <div class="flex flex-col gap-3">
