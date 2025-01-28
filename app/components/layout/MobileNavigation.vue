@@ -1,61 +1,94 @@
 <script setup lang="ts">
-const { navigationConfig, title } = useNavigation()
+import { useEventListener, useWindowScroll } from '@vueuse/core'
 
-const isSheetOpen = ref(false)
+const { t } = useI18n()
+const { navigationConfig } = useNavigation()
+const { y, directions } = useWindowScroll({ behavior: 'smooth' })
 
-function closeSheet(disabled?: boolean) {
-  if (disabled) {
+const isDrawerOpen = ref(false)
+const isNavigationHide = ref(false)
+const lastY = ref(y.value)
+
+function navigationVisibility() {
+  if (window.innerWidth > 1024) {
+    isDrawerOpen.value = false
+    window.removeEventListener('scroll', navigationVisibility)
     return
   }
 
-  isSheetOpen.value = false
+  if (window.innerWidth <= 1024) {
+    window.addEventListener('scroll', navigationVisibility)
+  }
+
+  if (!y.value || lastY.value === 0 && y.value !== lastY.value) {
+    lastY.value = y.value
+    return
+  }
+
+  lastY.value = y.value
+  isNavigationHide.value = directions.bottom
 }
+
+const handlers = {
+  scroll: navigationVisibility,
+  resize: navigationVisibility,
+} satisfies Record<string, EventListenerOrEventListenerObject>
+
+Object.entries(handlers).forEach(([event, handler]) => {
+  useEventListener(window, event, handler)
+})
 </script>
 
 <template>
   <nav
-    class="fixed inset-x-1/2 bottom-5 w-fit flex gap-2 border rounded-md bg-accent p-1 shadow-card lg:hidden -translate-x-1/2"
+    class="fixed bottom-0 z-2 grid auto-cols-fr grid-flow-col w-fit w-full justify-around border-t bg-background p-1 shadow-card transition-transform-300 lg:hidden"
+    :class="{ 'translate-y-full': isNavigationHide }"
   >
-    <UiSheet v-model:open="isSheetOpen" class="p-0">
-      <UiSheetTrigger as-child>
-        <UiButton variant="ghost" size="icon">
-          <span class="i-mdi:menu text-xl" />
+    <UiDrawer v-model:open="isDrawerOpen">
+      <UiDrawerTrigger as-child>
+        <UiButton class="h-fit flex flex-col gap-0.5 p-1" variant="ghost">
+          <span class="i-mdi:menu text-xl font-bold" />
+          <span class="text-xs font-medium">{{ t('title') }}</span>
         </UiButton>
-      </UiSheetTrigger>
+      </UiDrawerTrigger>
 
-      <UiSheetContent class="w-[70%] p-0 sm:w-[540px]" side="left">
-        <NuxtLink to="/" external>
-          <UiRadiantText class="border-b p-2 text-2xl font-bold" @click="closeSheet">
-            {{ title }}
-          </UiRadiantText>
-        </NuxtLink>
+      <UiDrawerContent>
+        <UiDrawerHeader aria-describedby="undefined">
+          <UiDrawerTitle>{{ t('title') }}</UiDrawerTitle>
+        </UiDrawerHeader>
 
-        <UiScrollArea class="min-h-10 w-full">
-          <nav>
-            <ul>
-              <li
-                v-for="config in navigationConfig" :key="config.name"
-                @click="closeSheet(config.disabled)"
-              >
-                <Component :is="config.componentType" :class="config.classes" v-bind="config.componentProps">
+        <UiDrawerFooter>
+          <ul>
+            <li
+              v-for="config in navigationConfig" :key="config.name"
+              @click="!config.disabled && (isDrawerOpen = false)"
+            >
+              <Component :is="config.componentType" :class="config.classes" v-bind="config.componentProps">
+                <div class="flex items-center gap-2">
                   <span v-if="config.disabled" class="i-mdi:lock" />
-
                   {{ config.name }}
-                </Component>
-              </li>
-            </ul>
-          </nav>
-        </UiScrollArea>
-      </UiSheetContent>
-    </UiSheet>
+                </div>
 
-    <UiColorMode button-variant="ghost" />
-    <UiLocaleMode button-variant="ghost" />
+                <span v-if="!config.disabled" class="i-custom:arrow-back rotate-180" />
+              </Component>
+            </li>
+          </ul>
+        </UiDrawerFooter>
+      </UiDrawerContent>
+    </UiDrawer>
+
+    <UiColorMode button-variant="ghost" with-text />
+    <UiLocaleMode button-variant="ghost" with-text />
   </nav>
 </template>
 
-<style scoped>
-.router-link-active {
-  @apply bg-accent border-r-3 border-primary;
+<i18n lang="json">
+{
+	"en": {
+		"title": "Navigation"
+	},
+	"ru": {
+		"title": "Навигация"
+	}
 }
-</style>
+</i18n>

@@ -23,10 +23,10 @@ export default function useNavigation() {
 
   const navigationConfig = computed(() => ITEMS.value.map(item => ({
     ...item,
-    componentType: item.disabled ? 'span' : Link,
+    componentType: item.disabled ? 'div' : Link,
     componentProps: item.disabled ? {} : { to: item.to },
-    classes: cn('block w-full p-3', {
-      'flex items-center gap-2 pointer-events-none': item.disabled,
+    classes: cn('block w-full p-3 flex items-center justify-between lg:justify-initial', {
+      'pointer-events-none gap-2': item.disabled,
     }),
   })))
 
