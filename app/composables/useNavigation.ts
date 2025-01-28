@@ -1,5 +1,5 @@
 export default function useNavigation() {
-  const { t } = useI18n()
+  const { t } = useI18n({ useScope: 'global' })
 
   const TITLE = '@brokuka'
 
