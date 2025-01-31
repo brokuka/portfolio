@@ -20,7 +20,7 @@
     "vaul-vue": "^0.2.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.16.0",
+    "@antfu/eslint-config": "^4.1.0",
     "@iconify-json/mdi": "^1.2.3",
     "@libsql/client": "*",
     "@nuxt/content": "3.0.1",
