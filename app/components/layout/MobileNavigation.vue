@@ -63,7 +63,7 @@ watch(locale, (newLocale) => {
       </UiDrawerTrigger>
 
       <UiDrawerContent>
-        <UiDrawerHeader aria-describedby="undefined">
+        <UiDrawerHeader>
           <UiDrawerTitle>{{ t('title') }}</UiDrawerTitle>
         </UiDrawerHeader>
 
