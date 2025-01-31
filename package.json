@@ -16,7 +16,7 @@
     "class-variance-authority": "^0.7.1",
     "lucide-vue-next": "latest",
     "radix-vue": "latest",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^3.0.1",
     "vaul-vue": "^0.2.1"
   },
   "devDependencies": {
