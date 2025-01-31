@@ -5,6 +5,8 @@ const { t } = useI18n()
 if (!route.params.project) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
 }
+
+const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first())
 </script>
 
 <template>
@@ -13,9 +15,7 @@ if (!route.params.project) {
     {{ t('toBack') }}
   </NuxtLink>
 
-  <ContentDoc v-slot="{ doc }">
-    <ContentRenderer :value="doc" class="mdc" />
-  </ContentDoc>
+  <ContentRenderer class="mdc" v-if="page" :value="page" />
 </template>
 
 <style scoped>
